@@ -75,14 +75,20 @@ def all_people() -> List:
 def stats_by_state():
     """
     Returns a list with the size of the G, B, D and another with the labels but just of the current period
+  
     """
+    # get the data of all the actual periods
+    tod = datetime.today()
+    today_month = tod.month
+    today_year = tod.datetime.today().year
     ls_size = []
-    labels = ["Bien", "Mal", "Proceso"]
-    all_p = all_people()
-    for element in ["G", "B", "P"]:
-        ls_size.append((len(filter_state(element)) / len(all_p)) * 100)
+    dic = {'G': 0, 'B': 0, 'P': 0}
+    for element in filter_period(today_month, today_year):
+        # the type of element is a period
+        dic[element.state] += 1
     
-    return ls_size, labels
+    return turn_into_lists(dic)
+
 
 def turn_into_lists(dic_p):
     """
