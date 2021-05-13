@@ -87,7 +87,9 @@ def stats_by_state():
         # the type of element is a period
         dic[element.state] += 1
     
-    return turn_into_lists(dic)
+    ls_key, ls_value =  turn_into_lists(dic)
+
+    return ls_value, ls_key
 
 
 def turn_into_lists(dic_p):
