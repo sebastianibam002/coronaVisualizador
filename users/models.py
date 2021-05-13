@@ -53,7 +53,7 @@ class Period(models.Model):
 
     person = models.ForeignKey(Afiliado, on_delete=models.CASCADE)
     period = models.CharField(max_length=8, default="6-2021")
-        
+    state = models.CharField(max_length=2, default="G")
 
     def __str__(self):
         return f"{self.period}: {self.person}"

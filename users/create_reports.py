@@ -46,9 +46,9 @@ def stats_state_and_period() -> List:
     for per in all_per:
         # good first
         labels.append(f"{per}-Bien")
-        values.append(len(Period.objects.filter(period=per, person__state="G")))
+        values.append(len(Period.objects.filter(period=per, state="G")))
         labels.append(f"{per}-Mal")
-        values.append(len(Period.objects.filter(period=per, person__state="B")))
+        values.append(len(Period.objects.filter(period=per, state="B")))
     
     return limit_to(5, labels, values)
 
@@ -74,7 +74,7 @@ def all_people() -> List:
 
 def stats_by_state():
     """
-    Returns a list with the size of the G, B, D and another with the labels
+    Returns a list with the size of the G, B, D and another with the labels but just of the current period
     """
     ls_size = []
     labels = ["Bien", "Mal", "Proceso"]
