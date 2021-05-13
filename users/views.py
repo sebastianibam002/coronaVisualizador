@@ -72,7 +72,7 @@ def index(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
 
-    if request.user.username == "foo":
+    if request.user.username == "validador":
         if request.method == "POST":
             look_text = request.POST["look_doc"]
             if look_text is not None and look_text != "":
