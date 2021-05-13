@@ -107,6 +107,9 @@ def limit_to(number: int, ls_keys: List, ls_values: List):
             ls_key_one.append(ls_keys[a])
             ls_val_two.append(ls_values[a])
 
+        ls_key_one = sort(ls_key_one)
+        ls_val_two = sort(ls_val_two)
+
         return ls_key_one, ls_val_two
     return ls_keys, ls_values
 
