@@ -1,1 +1,1 @@
-web: gunicorn miseguridadsocial.wsgi --log-file -
+web: gunicorn miseguridadsocial.wsgi
