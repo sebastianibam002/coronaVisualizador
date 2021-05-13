@@ -1,11 +1,7 @@
-import matplotlib.pyplot as plt
-import base64
-from io import BytesIO
-
 def get_graph():
     """
     creates a graph encodes it in utf-8
-    """
+    
     buffer = BytesIO()
     plt.savefig(buffer, format='png')
     #at the start of the buffer
@@ -15,9 +11,11 @@ def get_graph():
     graph = graph.decode('utf-8')
     buffer.close()
     return graph
-
+    """
+    pass
 
 def get_plot(sizes, labels):
+    """
     # where I am going to create the eleements
     plt.switch_backend("AGG")
     # labels = 'Frogs', 'Hogs', 'Dogs', 'Logs'
@@ -30,10 +28,13 @@ def get_plot(sizes, labels):
     ax1.axis('equal') 
     graph = get_graph()
     return graph
+    """
+    pass
 
 
 
 def get_plot_bar(x, y):
+    """
     # where I am going to create the eleements
     plt.switch_backend("AGG")   
     plt.figure(figsize=(4,3))
@@ -44,3 +45,5 @@ def get_plot_bar(x, y):
     plt.tight_layout()
     graph = get_graph()
     return graph
+    """
+    pass
