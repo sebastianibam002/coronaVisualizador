@@ -14,7 +14,7 @@ def filter_period(month: int, year: int) -> List:
     1-2021
     """
     p = str(month) + "-" + str(year)
-    return Afiliado.objects.filter(period=p)
+    return Period.objects.filter(period=p)
 
 def filter_state(state_look: str) -> List:
     """
