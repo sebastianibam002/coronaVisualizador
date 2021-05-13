@@ -1,0 +1,187 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+        
+    <!-- semantic UI -->
+    <link rel="stylesheet" type='text/css' href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.css">
+    <!--Chart js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" integrity="sha256-Uv9BNBucvCPipKQ2NS9wYpJmi8DTOEfTA/nH2aoJALw=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    {% load static %} <link href="{% static 'users/lib/bootstrap.min.css' %}" rel="stylesheet">
+    <title>Executive-view</title>
+  </head>
+  <body>
+   
+    <div class="container">
+        <div class="row p-5">
+            <h1>Informe Gerencial</h1>
+        </div>
+        <div class="row mt-5">
+            <div class="col-6">
+                <h3> Historico de Personas </h3>
+                <canvas id="myChart" width="400" height="200"></canvas>
+                <script>
+                var ctx = document.getElementById('myChart').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: [{% for item in bar_periods %}'{{item}}', {% endfor %}],
+                        datasets: [{
+                            label: 'Número de Personas',
+                            data: [{% for item in values_people %} {{item}}, {% endfor %}],
+                            fill: false,
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            tension: 0.1
+                        }]
+                    }
+                });
+                </script>
+            </div>
+            <div class="col-6">
+                <h3> Historico de Personas por Estados</h3>
+                <canvas id="second_one" width="400" height="200"></canvas>
+                <script>
+                var ctx = document.getElementById('second_one').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: [{% for item in bar_historic_labels %} '{{item}}', {% endfor %}],
+                        datasets: [{
+                            label: 'Número de Personas',
+                            data: [{% for item in bar_historic_values %} {{item}}, {% endfor %}],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+                </script>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-4">
+                <h5> Porcentajes por Estados</h5>
+                <canvas id="pie_chart" width="400" height="200"></canvas>
+                <script>
+                    var ctx = document.getElementById('pie_chart').getContext('2d');
+                    var myChart = new Chart(ctx, {
+                        type: 'doughnut',
+                        data: {
+                            labels: [
+                                {% for item in pie_label_state %} '{{item}}', {% endfor %}
+                            ],
+                            datasets: [{
+                                label: 'My First Dataset',
+                                data: [{% for item in pie_value_state %} {{item}}, {% endfor %}],
+                                backgroundColor: [
+                                    'rgb(255, 99, 132)',
+                                    'rgb(54, 162, 235)',
+                                    'rgb(255, 205, 86)'
+                                ],
+                                hoverOffset: 4
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                </script>
+            </div>
+            <div class="col-4">
+                <h5> Porcentajes Validaciones No Aprobadas</h5>
+                <canvas id="pie_chart_second" width="400" height="200"></canvas>
+                <script>
+                    var ctx = document.getElementById('pie_chart_second').getContext('2d');
+                    var myChart = new Chart(ctx, {
+                        type: 'doughnut',
+                        data: {
+                            labels: [
+                                'Validacion Uno',
+                                'Validacion Dos',
+                                'Validacion Tres'
+                            ],
+                            datasets: [{
+                                label: 'My First Dataset',
+                                data: [{% for item in pie_bad_people %} {{item}}, {% endfor %}],
+                                backgroundColor: [
+                                    'rgb(255, 99, 132)',
+                                    'rgb(54, 162, 235)',
+                                    'rgb(255, 205, 86)'
+                                ],
+                                hoverOffset: 4
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                </script>
+            </div>
+            <div class="col-4 bg-light">
+
+                <div class="container">
+                    <div class="row p-3">
+                        <h4>¿Cómo leer el informe gerencial?</h4>
+                    </div>
+                    <div class="row p-3">
+                        <p>Este es un parradfo informativo de cómo se deben leer las gráficas presdemtadas aneriorment</p>
+                    </div>
+                    <div class="row p-3">
+                        <div class="col">
+                            <a type="button" class="btn btn-dark" href="{% url 'download'%}">Descargar Informe</a>
+                        </div>
+                        <div class="col">
+                            <a type="button" class="btn btn-danger" href="{% url 'logout' %}">Cerrar Sesión </a> 
+                        </div>
+                    </div>
+                
+                </div>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+
+    {% load static %} <script src='{% static "users/lib/bootstrap.bundle.min.js" %}'></script>
+
+  </body>
+</html>
+

@@ -1,0 +1,26 @@
+{% extends "users/layout.html" %}
+{% block body %}
+
+<main id="main-holder">
+    <h1>Suba el archivo</h1>
+
+    {% if message %}
+    <div> {{message}}</div>
+    
+    {% endif%}
+    <p> El archivo contiene las nuevas personas y modificaciones de las que se encuentran actualmente en el sistema</p>
+    
+    
+    
+    <form action="{% url 'upload_file' %}" enctype="multipart/form-data"  method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit">
+    </form>
+    
+    <a href="{% url 'logout' %}">Log Out</a>
+
+</main>
+
+
+{% endblock %}

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Look-up </title>
+    {% load static %}
+    <link href="{% static 'users/lib/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Photo by Tim Samuel from Pexels-->
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+
+
+        }
+
+        main>.container {
+            padding: 60px 15px 0;
+        }
+    </style>
+
+</head>
+
+<body class="d-flex flex-column h-100">
+
+    <header>
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-danger">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">Cerrar Sesión</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Begin page content -->
+    <main class="flex-shrink-0">
+        <div class="container">
+            <h1 class="mt-lg-5">Busqueda de personas</h1>
+            <p class="lead">Ingrese el número de documento de la persona para revisar en nuestro sistema si se encuentra
+                en uno de los tres estados G: Bien, B: Mal o P: en proceso </p>
+            <div class="row">
+                <!-- cuadro de búsqueda-->
+
+                <div class="col mt-5">
+                    <form id="login-form" action="{% url 'index' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="mb-4">
+                            <label for="Documento" class="form-label"> Número de Documento</label>
+                            <input type="text" class="form-control" name="look_doc">
+                        </div>
+                        <div class="mb-4 text-center">
+                            <button type="submit" class="btn btn-danger"> Buscar </button>
+                        </div>
+
+                        {% if person %}
+                        {% if person.state == "G" %}
+                        <div class="alert alert-success" role="alert">
+                            La persona ha sido validada correctamente
+                        </div>
+                        {% elif person.state == "P" %}
+                        <div class="alert alert-primary" role="alert">
+                            La persona encuentra en proceso de validación
+                        </div>
+                        {% elif person.state == "B" %}
+                        <div class="alert alert-warning" role="alert">
+                            Encontramos un error en la validación:
+                            {% if person.first_val == "G" %}
+                            <li> Validación uno aprobada</li>
+
+                            {% elif person.first_val == "B" %}
+                            <li> Validacion uno no aprobada</li>
+                            <p>
+                                Le recordamos que durante la validación uno revisamos qué tipo de afiliado es usted ante
+                                el Ministerio de Salud, sugerimos llamar a la entidad de afiliación
+                            </p>
+                            {% else %}
+                            <li> Validacion uno en proceso</li>
+                            {% endif %}
+
+                            {% if person.second_val == "G"%}
+                            <li> Validación dos aprobada</li>
+                            {% elif person.second_val == "B" %}
+                            <li> Validacion dos no aprobada</li>
+                            <p>
+                                Puede que encontrasemos un error debido a que cotizó menos de 30 dias
+                            </p>
+                            {% else %}
+                            <li> Validacion dos en proceso</li>
+                            {% endif %}
+
+
+                            {% if person.third_val == "G"%}
+                            <li> Validación tres aprobada</li>
+                            {% elif person.third_val == "B" %}
+                            <li> Validacion tres no aprobada</li>
+                            <p>
+                                Puede que encontrasemos un error debido al tipo de planilla que nos envio
+                            </p>
+                            {% else %}
+                            <li> Validacion tres en proceso</li>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+                        {% else %}
+                        {% endif %}
+
+                        {% if not_found %}
+                        <p> No se encuentra documento en nuestro sistema </p>
+                        {% endif %}
+                    </form>
+                </div>
+
+                <div class="col d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded">
+                    <h3>Recuerde su seguridad es primero</h3>
+                    <p>Los procesos de verificacion que llevamos acabo es con el fin de garantizar su seguridad a la
+                        hora de realizar cualwuier transporte. Asegurese de manera legar, facil y segura</p>
+
+                    <ul>
+                        <li>
+                            Llevar el casco
+                        </li>
+                        <li>
+                            No tome y maneje
+                        </li>
+                        <li>
+                            busque ayuda psicologica en casos donde sienta wue no posee control de sus acciones
+                        </li>
+                        <li>
+                            Abra ventanas y tome el sol
+                        </li>
+                    </ul>
+                </div>
+
+
+            </div>
+
+            <div class="row text-center p-3">
+
+
+
+
+            </div>
+        </div>
+
+        </div>
+    </main>
+
+    <div class="container">
+
+    </div>
+
+    <footer class="footer mt-auto py-3 bg-light">
+        <div class="container">
+            <span class="text-muted">Mutual Salud, política y trtaamiento de datos disponibles en nuestro sitio web
+                www.mutualsalud.com</span>
+        </div>
+    </footer>
+
+
+    {% load static %}
+    <script src='{% static "users/lib/bootstrap.bundle.min.js" %}'></script>
+
+</body>
+
+
+</html>

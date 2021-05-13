@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Login </title>
+
+         <!--
+            {% load static %}
+            <img src="{% static 'my_app/example.jpg' %}" alt="My image">
+        -->
+        {% load static %} 
+        <link href="{% static 'users/lib/bootstrap.min.css' %}" rel="stylesheet">
+        <!-- Photo by Tim Samuel from Pexels-->
+        <style>
+            body {
+                background: #FF4136;
+                background: linear-gradient(to right, #FF4136, #FFDB29);
+            }
+            .bg {
+                
+                background-position: center center;
+            }
+
+        </style>
+    </head>
+    <body>
+        {% if message %}
+    <script>
+        alert("Nombre o contraseña inválidos");
+        </script>
+    {% endif %}
+        <div class="container w-75 bg-secondary my-5 rounded shadow" >
+            <div class="row align-items-stretch" >
+                <div class="col d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded" style="background: url('{% static 'users/media/BG.png' %}')">
+                    
+                </div>
+                <!-- Formulario-->
+                <div class="col bg-white p-5 rounded-end">
+
+                    <div class="text-center">
+                        {% load static %} <img src='{% static "users/media/logo.png" %}' width="100" alt="">
+
+                    </div>
+                   <h2 class="fw-bold text-center py-5">Bienvenido</h2>
+
+
+
+                   <!-- LOGIN -->
+                   <form action="{% url 'login' %}" method="POST">
+                        {% csrf_token %}
+                       <div class="mb-4">
+                           <label for="username" class="form-label"> Nombre de Usuario</label>
+                           <input type="text" class="form-control" name="username">
+                       </div>
+                       <div class="mb-4">
+                        <label for="password" class="form-label"> Contraseña</label>
+                        <input type="password" class="form-control" name="password">
+                       </div>
+
+                       <div class="mb-4 form-check">
+                           <input type="checkbox" name="connected" class="form-check-input">
+                           <label for="connected" class="form-check-label">Mantenerme conectado</label>
+                       </div>
+                       <div class="d-grid">
+                           <button type="submit" value="Login" class="btn btn-danger"> Iniciar Sesión </button>
+                       </div>
+
+                       <div class="my-3">
+                           <span><a href="#">Recuperar contraseña</a></span>
+                       </div>
+
+                   </form>
+
+                   <!-- LOGIN ADICIONAL-->
+
+    
+                   <div class="container w-100 my-5">
+                    <div class="row text-center">
+                        <p class="mt-5 mb-3 text-muted">&copy; 2021-2022</p>
+                    </div>
+                   </div>
+                </div>
+            </div>
+        </div>
+
+        {% load static %} <script src='{% static "users/lib/bootstrap.bundle.min.js" %}'></script>
+
+    </body>
+
+
+</html>
