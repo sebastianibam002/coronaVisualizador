@@ -63,9 +63,11 @@ def download_file():
     """
     name = "historic_file.csv"
 
+  
     with open(name , 'w') as destination:
         destination_writer = csv.writer(destination, delimiter=",", quotechar='"', quoting=csv.QUOTE_MINIMAL)
         all = Afiliado.objects.all()
+        destination_writer.writerow(["Numero de Documento", "Validación Uno", "Validación Dos", "Validación Tercer", "Estado Final"])
         for element in all:
             destination_writer.writerow([element.document_number, element.first_val, element.second_val, element.third_val, element.state])
         
