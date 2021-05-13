@@ -80,7 +80,7 @@ def stats_by_state():
     # get the data of all the actual periods
     tod = datetime.today()
     today_month = tod.month
-    today_year = tod.datetime.today().year
+    today_year = tod.year
     ls_size = []
     dic = {'G': 0, 'B': 0, 'P': 0}
     for element in filter_period(today_month, today_year):
