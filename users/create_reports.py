@@ -50,6 +50,7 @@ def stats_state_and_period() -> List:
         labels.append(f"{per}-Mal")
         values.append(len(Period.objects.filter(period=per, state="B")))
     
+    labels.sort()
     return limit_to(5, labels, values)
 
 
