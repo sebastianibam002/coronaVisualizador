@@ -1,26 +1,48 @@
-{% extends "users/layout.html" %}
-{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Login </title>
 
-<main id="main-holder">
-    <h1>Suba el archivo</h1>
+         <!--
+            {% load static %}
+            <img src="{% static 'my_app/example.jpg' %}" alt="My image">
+        -->
+        {% load static %} 
+        <link href="{% static 'users/lib/bootstrap.min.css' %}" rel="stylesheet">
 
-    {% if message %}
-    <div> {{message}}</div>
-    
-    {% endif%}
-    <p> El archivo contiene las nuevas personas y modificaciones de las que se encuentran actualmente en el sistema</p>
-    
-    
-    
-    <form action="{% url 'upload_file' %}" enctype="multipart/form-data"  method="POST">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit">
-    </form>
-    
-    <a href="{% url 'logout' %}">Log Out</a>
+    </head>
 
-</main>
+    <body>
+
+        <main id="main-holder">
+            <h1>Suba el archivo</h1>
+        
+            {% if message %}
+            <div> {{message}}</div>
+            
+            {% endif%}
+            <p> El archivo contiene las nuevas personas y modificaciones de las que se encuentran actualmente en el sistema</p>
+            
+            
+            
+            <form action="{% url 'upload_file' %}" enctype="multipart/form-data"  method="POST">
+                {% csrf_token %}
+                {{ form }}
+                <input type="submit">
+            </form>
+            
+            <a href="{% url 'logout' %}">Log Out</a>
+        
+        </main>
+        
+    </body>
 
 
-{% endblock %}
+{% load static %} <script src='{% static "users/lib/bootstrap.bundle.min.js" %}'></script>
+
+</body>
+
+
+</html>

@@ -40,7 +40,7 @@ def handle_uploaded_file(f):
                         third_val = row[VALIDATION_THREE], state = row[STATE_POS],  date_upload = now)
                 person.save()
                 # add the person to the period
-                per = Period(person= person, period=period_str)
+                per = Period(person= person, period=period_str, state=row[STATE_POS])
                 per.save()
 
             else:
@@ -50,7 +50,7 @@ def handle_uploaded_file(f):
 
 
                 if not Period.objects.filter(period=period_str, person= val[0]).exists():
-                    per = Period(person= val[0], period=period_str)
+                    per = Period(person= val[0], period=period_str, state=row[STATE_POS])
                     per.save()
     
     # delete the temp file
