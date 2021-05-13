@@ -111,6 +111,9 @@ def limit_to(number: int, ls_keys: List, ls_values: List):
         ls_val_two.sort()
 
         return ls_key_one, ls_val_two
+    ls_key_one.sort()
+    ls_val_two.sort()
+
     return ls_keys, ls_values
 
     
