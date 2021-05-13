@@ -50,7 +50,7 @@ def stats_state_and_period() -> List:
         labels.append(f"{per}-Mal")
         values.append(len(Period.objects.filter(period=per, person__state="B")))
     
-    return labels, values
+    return limit_to(5, labels, values)
 
 
 def stats_bad_by_state() -> List:
