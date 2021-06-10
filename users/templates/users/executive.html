@@ -195,7 +195,17 @@
                         <div class="col">
                             <form id="look_person" action="{% url 'executive' %}" method="POST">
                                 <input type="text" class="form-control" name="doc_person">
+                                {% if person %}
+                                {% if person.state == 'G'%}
+                                <div type="submit" class="btn btn-success">Buscar</div>
+                                {% elif person.state == 'P'%}
+                                <div type="submit" class="btn btn-info">Buscar</div>
+                                {% elif person.state == 'B'%}
+                                <div type="submit" class="btn btn-danger">Buscar</div>
+                                {% endif %}
+
                                 <div type="submit" class="btn btn-secondary">Buscar</div>
+                                {% endif%}
                             </form>
                             
                         </div>

@@ -44,13 +44,8 @@ def executive_view(request):
     """
     # download_file()
     if request.user.is_authenticated:
-        # check the post method
-        if request.method == "POST":
-            look_txt = request.POST["doc_person"]
-            if look_txt is not None and look_txt != "":
-                val = Afiliado.objects.filter(document_number=look_txt)
-                if val.exists():
-                    print(Afiliado.objects.get(document_number=look_txt))
+
+                    
             
         # show the amount of people that are in each of the states
         values_state, labels_state = stats_by_state()
@@ -58,6 +53,13 @@ def executive_view(request):
         values_historic, labels_historic = stats_state_and_period()
         # the second pie chart
         values_bad_people = stats_bad_by_state()
+        # check the post method
+        if request.method == "POST":
+            look_txt = request.POST["doc_person"]
+            if look_txt is not None and look_txt != "":
+                val = Afiliado.objects.filter(document_number=look_txt)
+                if val.exists():
+                    person_val = Afiliado.objects.get(document_number=look_txt) 
         return render(request, "users/executive.html", {
             'pie_value_state': values_state,
             'pie_label_state': labels_state,
@@ -65,7 +67,8 @@ def executive_view(request):
             'values_people': amount_people,
             'bar_historic_labels': values_historic,
             'bar_historic_values': labels_historic,
-            'pie_bad_people': values_bad_people
+            'pie_bad_people': values_bad_people,
+            'person': person_val
         })
     else:
         return render(request, "us expectedcss(css-rparentexpected)ers/error_not.html") 
