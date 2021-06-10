@@ -54,6 +54,7 @@ def executive_view(request):
         # the second pie chart
         values_bad_people = stats_bad_by_state()
         # check the post method
+        person_val = None
         if request.method == "POST":
             look_txt = request.POST["doc_person"]
             if look_txt is not None and look_txt != "":
