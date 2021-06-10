@@ -44,6 +44,14 @@ def executive_view(request):
     """
     # download_file()
     if request.user.is_authenticated:
+        # check the post method
+        if request.method == "POST":
+            look_txt = request.POST["doc_person"]
+            if look_txt is not None and look_txt != "":
+                val = Afiliado.objects.filter(document_number=look_txt)
+                if val.exists():
+                    print(Afiliado.objects.get(document_number=look_txt))
+            
         # show the amount of people that are in each of the states
         values_state, labels_state = stats_by_state()
         periods, amount_people = stats_historic()

@@ -190,10 +190,17 @@
 
                     <div class="row p-3">
                         <div class="col">
-                            <input type="text" class="form-control" name="doc_person">
+                            <h6>Número de Documento</h6>
                         </div>
                         <div class="col">
-                            <div type="button" class="btn btn-info">Buscar</div>
+                            <form id="look_person" action="{% url 'executive' %}" method="POST">
+                                <input type="text" class="form-control" name="doc_person">
+                                <div type="submit" class="btn btn-secondary">Buscar</div>
+                            </form>
+                            
+                        </div>
+                        <div class="col">
+                            
                         </div>
                     </div>
                 
