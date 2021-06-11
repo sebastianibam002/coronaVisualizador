@@ -196,23 +196,20 @@
                             <form id="look_person" action="{% url 'executive' %}" method="POST">
                                 {% csrf_token %}
                                 <input type="text" class="form-control" name="doc_person">
-                                {% if person %}
-                                    {% if person.state == 'G'%}
-                                        <div type="submit" class="btn btn-success">Bien</div>
-                                    {% elif person.state == 'P'%}
-                                        <div type="submit" class="btn btn-info">En Proceso</div>
-                                    {% elif person.state == 'B'%}   
-                                        <div type="submit" class="btn btn-danger">Mal</div>
-                                    {% endif%}
-                                {% else %}
-                                    <div type="submit" class="btn btn-ligh">Ingrese Número y Presione Enter</div>
-                                
-                                {% endif%}
                             </form>
                             
                         </div>
                         <div class="col">
-                            
+                            {% if person %}
+                            {% if person.state == 'G'%}
+                                <div type="button" disabled class="btn btn-success">Bien</div>
+                            {% elif person.state == 'P'%}
+                                <div type="button" disabled class="btn btn-info">En Proceso</div>
+                            {% elif person.state == 'B'%}   
+                                <div type="button" disabled class="btn btn-danger">Mal</div>
+                            {% endif%}
+                        
+                        {% endif%}
                         </div>
                     </div>
                 
