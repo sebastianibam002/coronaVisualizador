@@ -188,7 +188,7 @@
                         
                     </div>
 
-                    <div class="row p-3">
+                    <div class="row p-5">
                         <div class="col">
                             <h6>Número de Documento</h6>
                         </div>
@@ -198,14 +198,14 @@
                                 <input type="text" class="form-control" name="doc_person">
                                 {% if person %}
                                     {% if person.state == 'G'%}
-                                        <div type="submit" class="btn btn-success">Buscar</div>
+                                        <div type="submit" class="btn btn-success">Bien</div>
                                     {% elif person.state == 'P'%}
-                                        <div type="submit" class="btn btn-info">Buscar</div>
-                                    {% elif person.state == 'B'%}
-                                        <div type="submit" class="btn btn-danger">Buscar</div>
+                                        <div type="submit" class="btn btn-info">En Proceso</div>
+                                    {% elif person.state == 'B'%}   
+                                        <div type="submit" class="btn btn-danger">Mal</div>
                                     {% endif%}
                                 {% else %}
-                                    <div type="submit" class="btn btn-ligh">Buscar</div>
+                                    <div type="submit" class="btn btn-ligh">Ingrese Número y Presione Enter</div>
                                 
                                 {% endif%}
                             </form>
