@@ -80,11 +80,13 @@ def index(request):
 
     # add the three posible cases in which the website should show difference
 
+    LIST_EXECUTIVES = ["dcrico", "ejecutivo"]
+    LIST_VALIDATORS = ["cmorenol", "validador", "mcastillop"]
 
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
 
-    if request.user.username == "validador":
+    if request.user.username in LIST_VALIDATORS:
         if request.method == "POST":
             look_text = request.POST["look_doc"]
             if look_text is not None and look_text != "":
@@ -106,7 +108,7 @@ def index(request):
                 })
     elif request.user.username == "admin":
         return HttpResponseRedirect(reverse("upload_file"))
-    elif request.user.username == "ejecutivo":
+    elif request.user.username in LIST_EXECUTIVES:
         return HttpResponseRedirect(reverse("executive"))
 
 def login_view(request):
