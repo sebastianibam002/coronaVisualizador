@@ -81,7 +81,7 @@ def index(request):
     # add the three posible cases in which the website should show difference
 
     LIST_EXECUTIVES = ["dcrico", "ejecutivo"]
-    LIST_VALIDATORS = ["cmorenol", "validador", "mcastillop"]
+    LIST_VALIDATORS = ["cmorenol", "validador", "mcastillop", "86006812161", "86006812162", "86006812163", "86006812164", "86006812165", "86006812166", "86006812167", "86006812168", "86006812169", "86006812170"]
 
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
