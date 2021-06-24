@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-bp319cvl$qf&h$zsu#^iji+wkrapl7_5cp7o-o%had(q+^+oay
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['visualizadorseguridadsocial.herokuapp.com']
+ALLOWED_HOSTS = ['visualizadorseguridadsocial.herokuapp.com', '127.0.1']
 
 
 # Application definition
@@ -48,7 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'miseguridadsocial.urls'
@@ -76,13 +76,15 @@ WSGI_APPLICATION = 'miseguridadsocial.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'OPTIONS': {
-            'read_default_file': 'my.cnf',
-        },
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'corona_vis',
+            'USER': 'djangouser',
+            'PASSWORD': 'Motocros19@',
+            'HOST': '45.132.242.139',
+            'PORT': '3306',
+        }
     }
-}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
