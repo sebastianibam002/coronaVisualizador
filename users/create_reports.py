@@ -86,7 +86,8 @@ def stats_by_state():
     dic = {'G': 0, 'B': 0, 'P': 0}
     for element in filter_period(today_month, today_year):
         # the type of element is a period
-        dic[element.state] += 1
+        if element.state in dic.keys():
+            dic[element.state] += 1
     
     ls_key, ls_value =  turn_into_lists(dic)
 
