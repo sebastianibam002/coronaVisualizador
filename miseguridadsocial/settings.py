@@ -81,7 +81,7 @@ DATABASES = {
             'NAME': 'corona_vis',
             'USER': 'djangouser',
             'PASSWORD': 'Motocros19@',
-            'HOST': '45.132.242.139',
+            'HOST': '5.183.11.81',
             'PORT': '3306',
         }
     }
