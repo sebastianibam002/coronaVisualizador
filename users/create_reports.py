@@ -50,7 +50,6 @@ def stats_state_and_period() -> List:
         labels.append(f"{per}-Mal")
         values.append(len(Period.objects.filter(period=per, state="B")))
     
-    
     return limit_to(5, labels, values)
 
 
@@ -113,7 +112,7 @@ def limit_to(number: int, ls_keys: List, ls_values: List):
     ls_key_one, ls_val_two = [], []
     len_val = len(ls_keys)
     if len_val - number > 0:
-        for a in range(len_val, len_val - number, -1):
+        for a in range(len_val - 1, len_val - number - 1, -1):
             ls_key_one.append(ls_keys[a])
             ls_val_two.append(ls_values[a])
 
